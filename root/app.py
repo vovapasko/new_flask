@@ -3,15 +3,15 @@ from flask import Flask, render_template, url_for, request
 from werkzeug.utils import redirect
 import os
 
-from db import Database
-from entities import Player, Bet, Bank
-from wtf_forms import PlayerForm, BetForm, BankForm
+from root.db import Database
+from root.entities import Player, Bet, Bank
+from root.wtf_forms import PlayerForm, BetForm, BankForm
 
 app = Flask(__name__)
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
-# database = Database()
-database = None
+database = Database()
+# database = None
 
 
 @app.route('/')

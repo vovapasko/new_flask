@@ -4,17 +4,17 @@ from sqlalchemy import create_engine, Column, String, Integer, ForeignKey, Float
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Session
 
-import credentials
-from entities import Player, Bet, Bank, Casino, Usernames
+import root.credentials
+from root.entities import Player, Bet, Bank, Casino, Usernames
 
 
 class Database():
     # replace the user, password, hostname and database according to your configuration according to your information
     cstr = 'postgresql://{user}:{password}@{hostname}/{database}'.format(
-        user=credentials.username,
-        password=credentials.password,
-        hostname=credentials.host,
-        database=credentials.database
+        user=root.credentials.username,
+        password=root.credentials.password,
+        hostname=root.credentials.host,
+        database=root.credentials.database
     )
     engine = db.create_engine(cstr)
 
