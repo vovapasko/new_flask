@@ -10,6 +10,8 @@ from root.wtf_forms import PlayerForm, BetForm, BankForm
 app = Flask(__name__)
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
+app.config[
+    'SQLALCHEMY_DATABASE_URI'] = "postgres://abxvkvvzwysgdj:144d9b0117f3f20d098dad0fcfbb2180b0827e043c6d7e0375bf15ea9f6afcef@ec2-174-129-205-197.compute-1.amazonaws.com:5432/d72ivr9hbohppk"
 database = Database()
 
 
