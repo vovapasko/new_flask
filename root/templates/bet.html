@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bet</title>
+</head>
+<body>
+{% extends 'index.html' %}
+{%block content %}
+{{ super() }}
+<a href="{{url_for('create_bet')}}" class="btn btn-primary">Create new bet</a>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Money on bet</th>
+        <th scope="col">Possible win</th>
+        <th scope="col">Bet won</th>
+        <th scope="col">Bet time</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for bet in all_bets %}
+    <tr>
+        <td>{{bet.bet_id}}</td>
+        <td>{{bet.bet_money}}</td>
+        <td>{{bet.won_money}}</td>
+        <td>{{bet.won_bet}}</td>
+        <td>{{bet.bet_time}}</td>
+
+        <td class="d-flex justify-content-end">
+            <a href="{{url_for('update_bet', bet_id=bet.bet_id)}}" class="btn btn-success">Edit</a>
+            <a href="{{url_for('delete_bet', bet_id=bet.bet_id)}}" class="btn btn-danger">Delete</a>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+{%endblock%}
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bank</title>
+</head>
+<body>
+
+{% extends 'index.html' %}
+{%block content %}
+{{ super() }}
+<a href="{{url_for('create_bank')}}" class="btn btn-primary">Create new bank</a>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Sold time</th>
+        <th scope="col">Sold coins</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for bank in all_banks %}
+    <tr>
+        <td>{{bank.player_id}}</td>
+        <td>{{bank.sold_time}}</td>
+        <td>{{bank.sold_coins}}</td>
+        <td class="d-flex justify-content-end">
+            <a href="{{url_for('update_bank', player_id=bank.player_id, sold_time=bank.sold_time)}}" class="btn btn-success">Edit</a>
+            <a href="{{url_for('delete_bank', player_id=bank.player_id, sold_time=bank.sold_time)}}" class="btn btn-danger">Delete</a>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{%endblock%}
+
+</body>
+</html>

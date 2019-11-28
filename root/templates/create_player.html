@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create player</title>
+</head>
+<body>
+
+{% extends 'index.html' %}
+{%block content %}
+
+{{ super() }}
+
+<form method="post">
+    {{form.hidden_tag()}}
+
+    <div class="form-group">
+        {{form.id.label}}
+        {{form.id}}
+        {{form.balance.label}}
+        {{form.balance}}
+        {{form.passwrd.label}}
+        {{form.passwrd}}
+
+    </div>
+    {{form.Submit(class_="btn btn-success")}}
+</form>
+
+{%endblock%}
+
+</body>
+</html>

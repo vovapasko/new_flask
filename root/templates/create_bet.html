@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create bet</title>
+</head>
+<body>
+
+{% extends 'index.html' %}
+{%block content %}
+{{ super() }}
+
+<form method="post">
+    {{form.hidden_tag()}}
+
+    <div class="form-group">
+        {{form.bet_id.label}}
+        {{form.bet_id}}
+        {{form.bet_money.label}}
+        {{form.bet_money}}
+        {{form.won_money.label}}
+        {{form.won_money}}
+        {{form.won_bet.label}}
+        {{form.won_bet}}
+        {{form.bet_time.label}}
+        {{form.bet_time}}
+
+    </div>
+    {{form.Submit(class_="btn btn-success")}}
+</form>
+
+
+
+{%endblock%}
+
+</body>
+</html>

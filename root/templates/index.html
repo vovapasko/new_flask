@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+   <title>Hello</title>
+</head>
+<body>
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{{url_for('hello')}}">Main page</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="{{url_for('dashboard')}}">Dashboard</a>
+      <a class="nav-item nav-link" href="{{url_for('players')}}">Player</a>
+      <a class="nav-item nav-link" href="{{url_for('banks')}}">Bank</a>
+      <a class="nav-item nav-link" href="{{url_for('bets')}}">Bet</a>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+</body>
+</html>

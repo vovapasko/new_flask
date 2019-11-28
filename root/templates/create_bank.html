@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create bank</title>
+</head>
+<body>
+
+{% extends 'index.html' %}
+{%block content %}
+{{ super() }}
+
+<form method="post">
+    {{form.hidden_tag()}}
+    <div class="form-group">
+
+        {{form.player_id.label}}
+        {{form.player_id}}
+        {{form.sold_time.label}}
+        {{form.sold_time}}
+        {{form.sold_coins.label}}
+        {{form.sold_coins}}
+
+    </div>
+    {{form.Submit(class_="btn btn-success")}}
+</form>
+
+
+{%endblock%}
+</body>
+</html>
