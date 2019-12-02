@@ -163,8 +163,8 @@ def create_bank():
 
 
 @app.route('/shop')
-def countries():
-    return "Countries page"
+def shop():
+    return render_template("countries.html")
 
 
 if __name__ == '__main__':
