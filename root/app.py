@@ -164,7 +164,8 @@ def create_bank():
 
 @app.route('/shop')
 def shop():
-    return render_template("countries.html")
+    all_countries = database.fetchAllCountries()
+    return render_template("countries.html", all_countries=all_countries)
 
 
 @app.route('/get', methods=["GET"])

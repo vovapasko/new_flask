@@ -9,8 +9,29 @@
 {% extends 'index.html' %}
 {%block content %}
 {{ super() }}
-    <p>Countries page</p>
 
+<a href="{{url_for('create_player')}}" class="btn btn-primary">Create new country</a>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Capital</th>
+        <th scope="col">Population</th>
+        <th scope="col">Square</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for country in all_countries %}
+    <tr>
+        <td>{{country.country_name}}</td>
+        <td>{{country.country_capital}}</td>
+        <td>{{country.country_population}}</td>
+        <td>{{country.country_square}}</td>
+
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
 {%endblock%}
 
 </body>
