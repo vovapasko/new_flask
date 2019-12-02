@@ -1,7 +1,11 @@
+import json
+
 import flask
 from flask import Flask, render_template, url_for, request
 from werkzeug.utils import redirect
 import os
+import plotly
+import plotly.graph_objs as go
 
 from root.db import Database
 from root.entities import Player, Bet, Bank, Country
@@ -196,7 +200,18 @@ def create_country_hardcode():
 
 @app.route('/bar')
 def country_bar():
-    return render_template("bar.html")
+    name_country = ['A', 'B', 'C']
+    population = [20, 14, 23]
+    bar = go.Bar(
+        x=name_country,
+        y=population
+    )
+
+    data = {
+        "bar": [bar],
+    }
+    graphsJSON = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
+    return render_template("bar.html", graphsJSON=graphsJSON)
 
 
 if __name__ == '__main__':
