@@ -162,5 +162,10 @@ def create_bank():
     return render_template("create_bank.html", form=form)
 
 
+@app.route('/shop')
+def countries():
+    return "Countries page"
+
+
 if __name__ == '__main__':
     app.run(debug=True)

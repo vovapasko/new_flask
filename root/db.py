@@ -5,7 +5,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Session
 
 import root.credentials
-from root.entities import Player, Bet, Bank, Casino, Usernames
+from root.entities import Player, Bet, Bank, Casino, Usernames, Country
 
 
 class Database():
@@ -96,8 +96,19 @@ class Database():
         session.commit()
         print("Bet deleted successfully!")
 
-    # Bank
+    # Country
+    def createCountry(self, country):
+        session = Session(bind=self.connection)
+        session.add(country)
+        session.commit()
+        print("Country created successfully!")
 
+    def fetchAllCountries(self):
+        self.session = Session(bind=self.connection)
+        countries = self.session.query(Country).all()
+        return countries
+
+    # Bank
     def createBank(self, bank):
         session = Session(bind=self.connection)
         session.add(bank)

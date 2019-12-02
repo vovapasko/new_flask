@@ -20,6 +20,14 @@ class Bank(Base):
     sold_coins = Column(Float, nullable=False)
 
 
+class Country(Base):
+    __tablename__ = "country"
+    country_name = Column(String, primary_key=True)
+    country_capital = Column(String, nullable=False)
+    country_population = Column(Float, nullable=False)
+    country_square = Column(Float, nullable=False)
+
+
 class Bet(Base):
     __tablename__ = "bet"
     bet_id = Column(Integer, primary_key=True)
