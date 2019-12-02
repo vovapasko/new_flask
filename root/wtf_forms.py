@@ -24,3 +24,11 @@ class BankForm(FlaskForm):
     sold_time = StringField('Time of money selling', validators=[DataRequired()])
     sold_coins = FloatField('Amount of coins', validators=[DataRequired()])
     Submit = SubmitField("Create")
+
+
+class CountryForm(FlaskForm):
+    country_name = StringField('Name', validators=[DataRequired()])
+    country_capital = StringField('Capital', validators=[DataRequired()])
+    country_population = IntegerField('Population', validators=[DataRequired()])
+    country_square = FloatField('Square', validators=[DataRequired()])
+    Submit = SubmitField("Create")

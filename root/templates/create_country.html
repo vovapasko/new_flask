@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Country</title>
+</head>
+<body>
+
+{% extends 'index.html' %}
+{%block content %}
+
+{{ super() }}
+
+<form method="post">
+    {{form.hidden_tag()}}
+
+    <div class="form-group">
+        {{form.country_name.label}}
+        {{form.country_name}}
+        {{form.country_capital.label}}
+        {{form.country_capital}}
+        {{form.country_population.label}}
+        {{form.country_population}}
+        {{form.country_square.label}}
+        {{form.country_square}}
+
+    </div>
+    {{form.Submit(class_="btn btn-success")}}
+</form>
+
+{%endblock%}
+</body>
+</html>

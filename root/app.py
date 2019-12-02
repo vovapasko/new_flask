@@ -5,7 +5,7 @@ import os
 
 from root.db import Database
 from root.entities import Player, Bet, Bank, Country
-from root.wtf_forms import PlayerForm, BetForm, BankForm
+from root.wtf_forms import PlayerForm, BetForm, BankForm, CountryForm
 
 app = Flask(__name__)
 SECRET_KEY = os.urandom(32)
@@ -166,6 +166,12 @@ def create_bank():
 def shop():
     all_countries = database.fetchAllCountries()
     return render_template("countries.html", all_countries=all_countries)
+
+
+@app.route('/countries/new_country', methods=["GET", "POST"])
+def create_country():
+    form = CountryForm()
+    return render_template("create_country.html", form=form)
 
 
 @app.route('/get', methods=["GET"])
