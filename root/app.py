@@ -200,8 +200,12 @@ def create_country_hardcode():
 
 @app.route('/bar')
 def country_bar():
-    name_country = ['A', 'B', 'C']
-    population = [20, 14, 23]
+    country_data = database.fetchAllCountries()
+    name_country = []
+    population = []
+    for country in country_data:
+        name_country.append(country.country_name)
+        population.append(country.country_population)
     bar = go.Bar(
         x=name_country,
         y=population
