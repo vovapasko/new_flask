@@ -180,7 +180,7 @@ def create_country():
             population = form.country_population.data
             square = form.country_square.data
             new_country = Country(country_name=name, country_capital=capital,
-                          country_population=population, country_square=square)
+                                  country_population=population, country_square=square)
             database.createCountry(new_country)
             return redirect(url_for("shop"))
     return render_template("create_country.html", form=form)
@@ -192,6 +192,11 @@ def create_country_hardcode():
                           country_population=100, country_square=10.5)
     database.createCountry(new_counrty)
     return "Country created succesfully"
+
+
+@app.route('/bar')
+def country_bar():
+    return render_template("bar.html")
 
 
 if __name__ == '__main__':
