@@ -171,6 +171,18 @@ def shop():
 @app.route('/countries/new_country', methods=["GET", "POST"])
 def create_country():
     form = CountryForm()
+    if request.method == "POST":
+        if not form.validate():
+            return render_template("create_country.html", form=form)
+        else:
+            name = form.country_name.data
+            capital = form.country_capital.data
+            population = form.country_population.data
+            square = form.country_square.data
+            new_country = Country(country_name=name, country_capital=capital,
+                          country_population=population, country_square=square)
+            database.createCountry(new_country)
+            return redirect(url_for("shop"))
     return render_template("create_country.html", form=form)
 
 

@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import IntegerField, StringField, SubmitField, FloatField, BooleanField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, ValidationError
 
 
 class PlayerForm(FlaskForm):
@@ -32,3 +32,9 @@ class CountryForm(FlaskForm):
     country_population = IntegerField('Population', validators=[DataRequired()])
     country_square = FloatField('Square', validators=[DataRequired()])
     Submit = SubmitField("Create")
+
+    def validate(self):
+        if float(self.country_population.data) < 0:
+            raise ValidationError("Population more than 0")
+            return False
+        return True
