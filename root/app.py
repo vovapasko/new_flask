@@ -4,7 +4,7 @@ from werkzeug.utils import redirect
 import os
 
 from root.db import Database
-from root.entities import Player, Bet, Bank
+from root.entities import Player, Bet, Bank, Country
 from root.wtf_forms import PlayerForm, BetForm, BankForm
 
 app = Flask(__name__)
@@ -165,6 +165,14 @@ def create_bank():
 @app.route('/shop')
 def shop():
     return render_template("countries.html")
+
+
+@app.route('/get', methods=["GET"])
+def create_country_hardcode():
+    new_counrty = Country(country_name="New Germany", country_capital="New Berlin",
+                          country_population=100, country_square=10.5)
+    database.createCountry(new_counrty)
+    return "Country created succesfully"
 
 
 if __name__ == '__main__':

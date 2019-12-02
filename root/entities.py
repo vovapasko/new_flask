@@ -21,10 +21,10 @@ class Bank(Base):
 
 
 class Country(Base):
-    __tablename__ = "country"
+    __tablename__ = "countries"
     country_name = Column(String, primary_key=True)
     country_capital = Column(String, nullable=False)
-    country_population = Column(Float, nullable=False)
+    country_population = Column(Integer, nullable=False)
     country_square = Column(Float, nullable=False)
 
 
