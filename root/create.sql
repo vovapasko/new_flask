@@ -12,7 +12,7 @@ create table usernames(
 	player_nickname VARCHAR(40) NOT NULL
 );
 ALTER TABLE usernames add constraint player_id_pk1 PRIMARY KEY(player_id);
---ALTER TABLE usernames add constraint player_id_fk FOREIGN KEY(player_id)
+ALTER TABLE usernames add constraint player_id_fk FOREIGN KEY(player_id)
 REFERENCES player(player_id);
 
 
@@ -30,8 +30,8 @@ create table casino(
 	bet_id int NOT NULL
 );
 alter table casino add constraint player_bet_id_pk PRIMARY KEY(player_id, bet_id);
---alter table casino add constrain  t player_fk FOREIGN KEY (player_id) REFERENCES player(player_id);
---alter table casino add constraint bet_fk FOREIGN KEY (bet_id) REFERENCES bet(bet_id);
+alter table casino add constrain  t player_fk FOREIGN KEY (player_id) REFERENCES player(player_id);
+alter table casino add constraint bet_fk FOREIGN KEY (bet_id) REFERENCES bet(bet_id);
 
 CREATE table bank(
 	player_id int NOT NULL,
@@ -39,4 +39,4 @@ CREATE table bank(
 	sold_coins float NOT NULL
 );
 alter table bank add constraint p_id_time_pk PRIMARY KEY(player_id, sold_time);
---alter table bank add constraint id_player_fk FOREIGN KEY(player_id) REFERENCES player(player_id);
+alter table bank add constraint id_player_fk FOREIGN KEY(player_id) REFERENCES player(player_id);
