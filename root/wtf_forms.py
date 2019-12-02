@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import IntegerField, StringField, SubmitField, FloatField, BooleanField
-from wtforms.validators import DataRequired, ValidationError
+from wtforms.validators import DataRequired, ValidationError, Length
 
 
 class PlayerForm(FlaskForm):
@@ -27,7 +27,7 @@ class BankForm(FlaskForm):
 
 
 class CountryForm(FlaskForm):
-    country_name = StringField('Name', validators=[DataRequired()])
+    country_name = StringField('Name', validators=[DataRequired(), Length(3, 10, "The name should be from 3 to 10 symbols")])
     country_capital = StringField('Capital', validators=[DataRequired()])
     country_population = IntegerField('Population', validators=[DataRequired()])
     country_square = FloatField('Square', validators=[DataRequired()])

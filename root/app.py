@@ -26,7 +26,33 @@ def hello():
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template("dashboard.html")
+    player_data = database.fetchAllPlayers()
+    player_id = []
+    balance = []
+    for player in player_data:
+        player_id.append(player.player_id)
+        balance.append(player.balance)
+    bar = go.Bar(
+        x=player_id,
+        y=balance
+    )
+    bet_data = database.fetchAllBets()
+    bet_id = []
+    bet_money = []
+    for bet in bet_data:
+        bet_id.append(bet.bet_id)
+        bet_money.append(bet.bet_money)
+    pie = go.Pie(
+        labels=bet_id,
+        values=bet_money
+    )
+
+    data = {
+        "bar": [bar],
+        "pie": [pie]
+    }
+    graphsJSON = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
+    return render_template("dashboard.html", graphsJSON=graphsJSON)
 
 
 @app.route('/players')
