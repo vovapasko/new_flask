@@ -26,7 +26,6 @@ class Database():
     # Player
 
     def createPlayer(self, player):
-        # session = Session(bind=self.connection)
         self.session.add(player)
         self.session.commit()
         print("Player created successfully!")
@@ -66,9 +65,9 @@ class Database():
     # Bet
 
     def createBet(self, bet):
-        session = Session(bind=self.connection)
-        session.add(bet)
-        session.commit()
+        # session = Session(bind=self.connection)
+        self.session.add(bet)
+        self.session.commit()
         print("Bet created successfully!")
 
     def updateBet(self, bet_id, bet_money, won_money, won_bet, bet_time):
