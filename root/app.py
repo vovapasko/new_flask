@@ -27,13 +27,13 @@ def hello():
 @app.route('/dashboard')
 def dashboard():
     player_data = database.fetchAllPlayers()
-    player_id = []
+    player_username = []
     balance = []
     for player in player_data:
-        player_id.append(player.player_id)
+        player_username.append(player.player_username)
         balance.append(player.balance)
     bar = go.Bar(
-        x=player_id,
+        x=player_username,
         y=balance
     )
     bet_data = database.fetchAllBets()
@@ -61,24 +61,24 @@ def players():
     return render_template("players.html", all_players=all_players)
 
 
-@app.route('/players/update/<player_id>', methods=["GET", "POST"])
-def update_player(player_id):
-    player_data = database.fetchPlayer(player_id)
-    form = PlayerForm(id=player_data.player_id,
+@app.route('/players/update/<player_username>', methods=["GET", "POST"])
+def update_player(player_username):
+    player_data = database.fetchPlayer(player_username)
+    form = PlayerForm(player_username=player_data.player_username,
                       balance=player_data.balance,
                       passwrd=player_data.passwrd)
     if request.method == "POST":
         balance = form.balance.data
         passwrd = form.passwrd.data
-        database.updatePlayer(player_id, balance, passwrd)
+        database.updatePlayer(player_username, balance, passwrd)
         return redirect(url_for("players"))
 
     return render_template("update_player.html", form=form)
 
 
-@app.route('/players/delete_player/<player_id>')
-def delete_player(player_id):
-    database.deletePlayer(player_id)
+@app.route('/players/delete_player/<player_username>')
+def delete_player(player_username):
+    database.deletePlayer(player_username)
     return redirect(url_for("players"))
 
 
@@ -89,10 +89,10 @@ def create_player():
         if not form.validate():
             return render_template("create_player.html", form=form)
         else:
-            id = form.id.data
+            username = form.player_username.data
             balance = form.balance.data
             passwrd = form.passwrd.data
-            player = Player(player_id=id, balance=balance, passwrd=passwrd)
+            player = Player(player_username=username, balance=balance, passwrd=passwrd)
             database.createPlayer(player)
             return redirect(url_for("players"))
     return render_template("create_player.html", form=form)
@@ -155,24 +155,24 @@ def banks():
     return render_template("bank.html", all_banks=all_banks)
 
 
-@app.route('/banks/<player_id>/<sold_time>', methods=["GET", "POST"])
-def update_bank(player_id, sold_time):
-    bank_data = database.fetchBank(player_id, sold_time)
+@app.route('/banks/<player_username>/<sold_time>', methods=["GET", "POST"])
+def update_bank(player_username, sold_time):
+    bank_data = database.fetchBank(player_username, sold_time)
     form = BankForm(
-        player_id=bank_data.player_id,
+        player_username=bank_data.player_username,
         sold_time=bank_data.sold_time,
         sold_coins=bank_data.sold_coins
     )
     if request.method == "POST":
         sold_coins = form.sold_coins.data
-        database.updateBank(player_id, sold_time, sold_coins)
+        database.updateBank(player_username, sold_time, sold_coins)
         return redirect(url_for("banks"))
     return render_template("update_bank.html", form=form)
 
 
-@app.route('/banks/delete_bank/<player_id>/<sold_time>')
-def delete_bank(player_id, sold_time):
-    database.deleteBank(player_id, sold_time)
+@app.route('/banks/delete_bank/<player_username>/<sold_time>')
+def delete_bank(player_username, sold_time):
+    database.deleteBank(player_username, sold_time)
     return redirect(url_for("banks"))
 
 
@@ -183,10 +183,10 @@ def create_bank():
         if not form.validate():
             return render_template("create_bank.html", form=form)
         else:
-            id = form.player_id.data
+            username = form.player_username.data
             sold_time = form.sold_time.data.format('%Y-%m-%d %H:%M:%S')
             sold_coins = form.sold_coins.data
-            bank = Bank(player_id=id, sold_coins=sold_coins, sold_time=sold_time)
+            bank = Bank(player_username=username, sold_coins=sold_coins, sold_time=sold_time)
             database.createBank(bank)
             return redirect(url_for("banks"))
     return render_template("create_bank.html", form=form)

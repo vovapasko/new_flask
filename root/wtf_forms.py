@@ -4,8 +4,8 @@ from wtforms.validators import DataRequired, ValidationError, Length
 
 
 class PlayerForm(FlaskForm):
-    id = IntegerField('Id', validators=[DataRequired()])
-    balance = IntegerField('Balance', validators=[DataRequired()])
+    player_username = StringField('Id', validators=[DataRequired()])
+    balance = FloatField('Balance', validators=[DataRequired()])
     passwrd = StringField('Password', validators=[DataRequired()])
     Submit = SubmitField("Create")
 
@@ -20,7 +20,7 @@ class BetForm(FlaskForm):
 
 
 class BankForm(FlaskForm):
-    player_id = IntegerField('player id', validators=[DataRequired()])
+    player_username = StringField('Player username', validators=[DataRequired()])
     sold_time = StringField('Time of money selling', validators=[DataRequired()])
     sold_coins = FloatField('Amount of coins', validators=[DataRequired()])
     Submit = SubmitField("Create")

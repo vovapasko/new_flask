@@ -25,8 +25,8 @@
         <td>{{player.balance}}</td>
         <td>{{player.passwrd}}</td>
         <td class="d-flex justify-content-end">
-            <a href="{{url_for('update_player', player_id=player.player_id)}}" class="btn btn-success">Edit</a>
-            <a href="{{url_for('delete_player', player_id=player.player_id)}}" class="btn btn-danger">Delete</a>
+            <a href="{{url_for('update_player', player_username=player.player_username)}}" class="btn btn-success">Edit</a>
+            <a href="{{url_for('delete_player', player_username=player.player_username)}}" class="btn btn-danger">Delete</a>
 
         </td>
     </tr>
