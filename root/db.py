@@ -20,14 +20,15 @@ class Database():
 
     def __init__(self):
         self.connection = self.engine.connect()
+        self.session = Session(bind=self.connection)
         print("DB Instance created")
 
     # Player
 
     def createPlayer(self, player):
-        session = Session(bind=self.connection)
-        session.add(player)
-        session.commit()
+        # session = Session(bind=self.connection)
+        self.session.add(player)
+        self.session.commit()
         print("Player created successfully!")
 
     def updatePlayer(self, player_id, player_balance, player_passwd):
