@@ -13,7 +13,7 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th scope="col">Id</th>
+        <th scope="col">Username</th>
         <th scope="col">Balance</th>
         <th scope="col">passwrd</th>
     </tr>
@@ -21,7 +21,7 @@
     <tbody>
     {% for player in all_players %}
     <tr>
-        <td>{{player.player_id}}</td>
+        <td>{{player.player_username}}</td>
         <td>{{player.balance}}</td>
         <td>{{player.passwrd}}</td>
         <td class="d-flex justify-content-end">
