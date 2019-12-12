@@ -1,31 +1,25 @@
 from sqlalchemy import create_engine, Column, String, Integer, ForeignKey, Float, Boolean
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import Session
 from sqlalchemy import TIMESTAMP
+from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 
 
 class Player(Base):
     __tablename__ = "player"
-    player_id = Column(Integer, primary_key=True)
-    balance = Column(Integer, nullable=False)
+    player_username = Column(String, primary_key=True)
+    balance = Column(Float, nullable=False)
     passwrd = Column(String(64), nullable=False)
+    banks = relationship("Bank", cascade="all, delete", passive_deletes=True)
+    casinos = relationship("Casino", cascade="all, delete", passive_deletes=True)
 
 
 class Bank(Base):
     __tablename__ = "bank"
-    player_id = Column(Integer, ForeignKey(Player.player_id), primary_key=True)
+    player_username = Column(String, ForeignKey(Player.player_username, ondelete="cascade"), primary_key=True)
     sold_time = Column(TIMESTAMP, primary_key=True)
     sold_coins = Column(Float, nullable=False)
-
-
-class Country(Base):
-    __tablename__ = "countries"
-    country_name = Column(String, primary_key=True)
-    country_capital = Column(String, nullable=False)
-    country_population = Column(Integer, nullable=False)
-    country_square = Column(Float, nullable=False)
 
 
 class Bet(Base):
@@ -35,17 +29,18 @@ class Bet(Base):
     won_money = Column(Float, nullable=False)
     won_bet = Column(Boolean, nullable=False)
     bet_time = Column(TIMESTAMP, nullable=False)
-
-
-class Usernames(Base):
-    __tablename__ = "usernames"
-    player_id = Column(Integer, ForeignKey(Player.player_id), primary_key=True)
-    player_name = Column(String(64))
-    play_surname = Column(String(64))
-    player_nickname = Column(String(64), nullable=False)
+    casinos = relationship("Casino", cascade="all, delete", passive_deletes=True)
 
 
 class Casino(Base):
     __tablename__ = "casino"
-    player_id = Column(Integer, ForeignKey(Player.player_id), primary_key=True)
-    bet_id = Column(Integer, ForeignKey(Bet.bet_id), primary_key=True)
+    player_username = Column(String, ForeignKey(Player.player_username, ondelete="cascade"), primary_key=True)
+    bet_id = Column(Integer, ForeignKey(Bet.bet_id, ondelete="cascade"), primary_key=True)
+
+
+class Country(Base):
+    __tablename__ = "countries"
+    country_name = Column(String, primary_key=True)
+    country_capital = Column(String, nullable=False)
+    country_population = Column(Integer, nullable=False)
+    country_square = Column(Float, nullable=False)

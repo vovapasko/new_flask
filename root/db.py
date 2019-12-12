@@ -91,15 +91,7 @@ class Database():
         self.session.commit()
         print("Bet deleted successfully!")
 
-    # Country
-    def createCountry(self, country):
-        self.session.add(country)
-        self.session.commit()
-        print("Country created successfully!")
 
-    def fetchAllCountries(self):
-        countries = self.session.query(Country).all()
-        return countries
 
     # Bank
     def createBank(self, bank):
@@ -135,3 +127,13 @@ class Database():
         self.session.delete(bankData)
         self.session.commit()
         print("Bank deleted successfully!")
+
+    # Country
+    def createCountry(self, country):
+        self.session.add(country)
+        self.session.commit()
+        print("Country created successfully!")
+
+    def fetchAllCountries(self):
+        countries = self.session.query(Country).all()
+        return countries
