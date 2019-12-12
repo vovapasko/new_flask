@@ -65,86 +65,73 @@ class Database():
     # Bet
 
     def createBet(self, bet):
-        # session = Session(bind=self.connection)
         self.session.add(bet)
         self.session.commit()
         print("Bet created successfully!")
 
     def updateBet(self, bet_id, bet_money, won_money, won_bet, bet_time):
-        session = Session(bind=self.connection)
         dataToUpdate = {Bet.bet_money: bet_money, Bet.won_money: won_money,
                         Bet.won_bet: won_bet, Bet.bet_time: bet_time}
-        betData = session.query(Bet).filter(Bet.bet_id == bet_id)
+        betData = self.session.query(Bet).filter(Bet.bet_id == bet_id)
         betData.update(dataToUpdate)
-        session.commit()
+        self.session.commit()
         print("Bet updated successfully!")
 
     def fetchAllBets(self):
-        self.session = Session(bind=self.connection)
         bets = self.session.query(Bet).all()
         return bets
 
     def fetchBet(self, bet_id):
-        self.session = Session(bind=self.connection)
         bet = self.session.query(Bet).filter(Bet.bet_id == bet_id).first()
         return bet
 
     def deleteBet(self, bet_id):
-        session = Session(bind=self.connection)
-        betData = session.query(Bet).filter(Bet.bet_id == bet_id).first()
-        session.delete(betData)
-        session.commit()
+        betData = self.session.query(Bet).filter(Bet.bet_id == bet_id).first()
+        self.session.delete(betData)
+        self.session.commit()
         print("Bet deleted successfully!")
 
     # Country
     def createCountry(self, country):
-        session = Session(bind=self.connection)
-        session.add(country)
-        session.commit()
+        self.session.add(country)
+        self.session.commit()
         print("Country created successfully!")
 
     def fetchAllCountries(self):
-        self.session = Session(bind=self.connection)
         countries = self.session.query(Country).all()
         return countries
 
     # Bank
     def createBank(self, bank):
-        session = Session(bind=self.connection)
-        session.add(bank)
-        session.commit()
+        self.session.add(bank)
+        self.session.commit()
         print("Bank created successfully!")
 
     def updateBank(self, player_id, sold_time, sold_coins):
-        session = Session(bind=self.connection)
         dataToUpdate = {Bank.sold_time: sold_time, Bank.sold_coins: sold_coins}
-        betData = session.query(Bank).filter(Bank.player_id == player_id)
+        betData = self.session.query(Bank).filter(Bank.player_id == player_id)
         betData.update(dataToUpdate)
-        session.commit()
+        self.session.commit()
         print("Bank updated successfully!")
 
     def updateBankWithTime(self, player_id, sold_time, sold_coins):
-        session = Session(bind=self.connection)
         dataToUpdate = {Bank.sold_coins: sold_coins}
-        bankData = session.query(Bank).filter(Bank.player_id == player_id).filter(Bank.sold_time == sold_time)
+        bankData = self.session.query(Bank).filter(Bank.player_id == player_id).filter(Bank.sold_time == sold_time)
         bankData.update(dataToUpdate)
-        session.commit()
+        self.session.commit()
         print("Bank updated successfully!")
 
     def fetchAllBanks(self):
-        self.session = Session(bind=self.connection)
         banks = self.session.query(Bank).all()
         return banks
 
     def fetchBank(self, player_id, sold_time):
-        self.session = Session(bind=self.connection)
         bank = self.session.query(Bank).filter(Bank.player_id == player_id).filter(Bank.sold_time == sold_time).first()
         return bank
 
     def deleteBank(self, player_id, sold_time):
-        session = Session(bind=self.connection)
-        bankData = session.query(Bank).filter(Bank.player_id == player_id).filter(
+        bankData = self.session.query(Bank).filter(Bank.player_id == player_id).filter(
             Bank.sold_time == sold_time).filter().first()
-        session.delete(bankData)
-        session.commit()
+        self.session.delete(bankData)
+        self.session.commit()
         print("Bank deleted successfully!")
