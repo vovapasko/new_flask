@@ -244,5 +244,11 @@ def country_bar():
     return render_template("bar.html", graphsJSON=graphsJSON)
 
 
+@app.route('/casinos')
+def casinos():
+    all_casinos = database.fetchAllCasinos()
+    return render_template("casinos.html", all_casinos=all_casinos)
+
+
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main information</title>
+</head>
+<body>
+
+{% extends 'index.html' %}
+{%block content %}
+{{ super() }}
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Player</th>
+        <th scope="col">Bet</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for casino in all_casinos %}
+    <tr>
+        <td>{{casino.player_username}}</td>
+        <td>{{casino.bet_id}}</td>
+
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{%endblock%}
+
+</body>
+</html>
