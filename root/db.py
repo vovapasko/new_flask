@@ -5,7 +5,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Session
 
 import root.credentials
-from root.entities import Player, Bet, Bank, Casino, Usernames, Country
+from root.entities import Player, Bet, Bank, Casino, Country
 
 
 class Database():
