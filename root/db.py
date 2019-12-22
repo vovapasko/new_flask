@@ -20,15 +20,15 @@ class Database():
     )
     engine = db.create_engine(cstr)
     Session = sessionmaker(bind=engine)
-    
+
     def __init__(self):
-        #self.connection = self.engine.connect()
+        # self.connection = self.engine.connect()
         self.session = None
         print("DB Instance created")
 
     def __enter__(self):
         if self.session is not None:
-            self.session.close() 
+            self.session.close()
         self.session = self.Session()
         return self.session
 
@@ -121,9 +121,13 @@ class Database():
         banks = self.session.query(Bank).all()
         return banks
 
-    def fetchBank(self, player_username, sold_time):
+    def fetchBankUsernameSoldtime(self, player_username, sold_time):
         bank = self.session.query(Bank).filter(Bank.player_username == player_username).filter(
             Bank.sold_time == sold_time).first()
+        return bank
+
+    def fetchBankUsername(self, player_username):
+        bank = self.session.query(Bank).filter(Bank.player_username == player_username).all()
         return bank
 
     def deleteBank(self, player_username, sold_time):
@@ -131,6 +135,8 @@ class Database():
             Bank.sold_time == sold_time).filter().first()
         self.session.delete(bankData)
         print("Bank deleted successfully!")
+
+    # Casino
 
     def createCasino(self, casino):
         self.session.add(casino)

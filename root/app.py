@@ -171,7 +171,7 @@ def banks():
 @app.route('/banks/<player_username>/<sold_time>', methods=["GET", "POST"])
 def update_bank(player_username, sold_time):
     with database:
-        bank_data = database.fetchBank(player_username, sold_time)
+        bank_data = database.fetchBankUsernameSoldtime(player_username, sold_time)
         form = BankForm(
             player_username=bank_data.player_username,
             sold_time=bank_data.sold_time,
@@ -223,6 +223,10 @@ def casinos():
             player_bets = {}
         return render_template("casinos.html", player_bets=players_list)
 
+
+@app.route('/analysis')
+def analysis():
+    pass
 
 if __name__ == '__main__':
     app.run(debug=True)
