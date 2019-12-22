@@ -14,14 +14,26 @@
     <thead>
     <tr>
         <th scope="col">Player</th>
-        <th scope="col">Bet</th>
+        <th scope="col">Bet id</th>
+        <th scope="col">Money on bet</th>
+        <th scope="col">Possible win</th>
+        <th scope="col">Bet won</th>
+        <th scope="col">Bet time</th>
+        <th scope="col">Bet color</th>
+        <th scope="col">Bet number</th>
     </tr>
     </thead>
     <tbody>
-    {% for casino in all_casinos %}
+    {% for player_bet in player_bets %}
     <tr>
-        <td>{{casino.player_username}}</td>
-        <td>{{casino.bet_id}}</td>
+        <td>{{player_bet.player_username}}</td>
+        <td>{{player_bet.bet.bet_id}}</td>
+        <td>{{player_bet.bet.bet_money}}</td>
+        <td>{{player_bet.bet.won_money}}</td>
+        <td>{{player_bet.bet.won_bet}}</td>
+        <td>{{player_bet.bet.bet_time}}</td>
+        <td>{{player_bet.bet.bet_color}}</td>
+        <td>{{player_bet.bet.bet_number}}</td>
 
     </tr>
     {% endfor %}

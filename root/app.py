@@ -8,8 +8,8 @@ import plotly
 import plotly.graph_objs as go
 
 from root.db import Database
-from root.entities import Player, Bet, Bank, Country
-from root.wtf_forms import PlayerForm, BetForm, BankForm, CountryForm
+from root.entities import Player, Bet, Bank
+from root.wtf_forms import PlayerForm, BetForm, BankForm
 
 app = Flask(__name__)
 SECRET_KEY = os.urandom(24)
@@ -211,9 +211,17 @@ def create_bank():
 
 @app.route('/casinos')
 def casinos():
+    player_bets = {}
+    players_list = []
     with database:
         all_casinos = database.fetchAllCasinos()
-        return render_template("casinos.html", all_casinos=all_casinos)
+        for casino in all_casinos:
+            player_bets['player_username'] = casino.player_username
+            bet = database.fetchBet(casino.bet_id)
+            player_bets['bet'] = bet
+            players_list.append(player_bets)
+            player_bets = {}
+        return render_template("casinos.html", player_bets=players_list)
 
 
 if __name__ == '__main__':
