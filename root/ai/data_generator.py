@@ -3,6 +3,7 @@ import numpy
 elements_amount = 1000
 start_balance = 1000
 start_sold_coins = 1000
+end_balance = start_balance * 2000
 
 
 def generate_data_experienced_player():
@@ -20,12 +21,11 @@ def generate_data_experienced_player():
 
 
 def generate_data_inexperienced_player():
-    end_balance = start_balance * 700
     end_sold_coins = start_sold_coins * 2000
     start_bet_sum = start_balance * 0.3
     end_bet_sum = end_balance * 0.7
-    start_loss = start_balance * 0.3
-    finished_loss = end_balance * 0.9
+    start_loss = start_balance * 0.1
+    finished_loss = end_balance * 0.3
     balance_set = numpy.around(numpy.linspace(start_balance, end_balance, num=elements_amount), decimals=2)
     sold_coins_set = numpy.around(numpy.linspace(start_sold_coins, end_sold_coins, num=elements_amount), decimals=2)
     bet_set = numpy.around(numpy.linspace(start_bet_sum, end_bet_sum, num=elements_amount), decimals=2)
