@@ -1,4 +1,5 @@
 from root.db import Database
+from root.ai.run_ai import run
 
 
 def get_data():
@@ -27,5 +28,19 @@ def get_data():
             player_data.append(player_dict)
     return player_data
 
-rets = get_data()
-print()
+
+def handle_for_ai_data(dict_player_data):
+    player_usernames = []
+    player_data = []
+    for player in dict_player_data:
+        player_usernames.append(player['player_username'])
+        player_data.append([player['balance'], player['sold_coins'],
+                            player['bet_money'], player['bet_loss']])
+    return {'usernames': player_usernames,
+            'data': player_data}
+
+
+data = get_data()
+handled = handle_for_ai_data(data)
+res = run(handled['usernames'], handled['data'])
+print(res)

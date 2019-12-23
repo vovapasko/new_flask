@@ -2,10 +2,6 @@ def get_data(filename):
     str_data = open(filename, 'r').read()
     lines = str_data.split('\n')
     del lines[-1]
-    balance = []
-    sold_coins = []
-    bet_amount = []
-    loss_amount = []
     return_data = []
     for line in lines:
         tmp = line.split(',')
