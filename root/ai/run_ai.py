@@ -6,8 +6,10 @@ from root.ai.tools import get_data, convert_format
 
 def run(usernames, data):
     dir = os.path.dirname(os.path.realpath(__file__))
-    experienced_player_data = get_data(dir + '\\experienced.txt')
-    inexperienced_player_data = get_data(dir + '\\inexperienced.txt')
+    exp_dir = os.path.join(dir, 'experienced.txt')
+    inexp_dir = os.path.join(dir, 'inexperienced.txt')
+    experienced_player_data = get_data(exp_dir)
+    inexperienced_player_data = get_data(inexp_dir)
 
     exp_converted = convert_format(experienced_player_data, 'experienced')
     inexp_converted = convert_format(inexperienced_player_data, 'inexperienced')
