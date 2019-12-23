@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analysis</title>
+</head>
+<body>
+
+{% extends 'index.html' %}
+{%block content %}
+{{ super() }}
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Player</th>
+        <th scope="col">Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in ai_results %}
+        {% for username, status in item.items() %}
+        <tr>
+            <td>{{username}}</td>
+            <td>{{status}}</td>
+        </tr>
+        {% endfor %}
+    {% endfor %}
+    </tbody>
+</table>
+
+{%endblock%}
+</body>
+</html>

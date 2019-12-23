@@ -38,9 +38,3 @@ def handle_for_ai_data(dict_player_data):
                             player['bet_money'], player['bet_loss']])
     return {'usernames': player_usernames,
             'data': player_data}
-
-
-data = get_data()
-handled = handle_for_ai_data(data)
-res = run(handled['usernames'], handled['data'])
-print(res)

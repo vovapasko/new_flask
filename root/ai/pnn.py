@@ -1,15 +1,15 @@
 import math
 import operator
 
-data1 = [([1, 1, 2], "A"),
-         ([1, 2, 1], "A"),
-         ([2, 2, 1], "A"),
-         ([5, 5, 5], "B")]
-
-data_to_classify1 = [{'player_username': 'p1', 'data': [5, 5, 4]},
-                     {'player_username': 'p2', 'data': [0, 0, 3]},
-                     {'player_username': 'p3', 'data': [1, 2, 1]}]
-
+# data1 = [([1, 1, 2], "A"),
+#          ([1, 2, 1], "A"),
+#          ([2, 2, 1], "A"),
+#          ([5, 5, 5], "B")]
+#
+# data_to_classify1 = [{'player_username': 'p1', 'data': [5, 5, 4]},
+#                      {'player_username': 'p2', 'data': [0, 0, 3]},
+#                      {'player_username': 'p3', 'data': [1, 2, 1]}]
+#
 
 def start_pnn(data, data_to_classify):
     sigma = 0.1

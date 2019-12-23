@@ -7,9 +7,10 @@ import os
 import plotly
 import plotly.graph_objs as go
 
+from root.ai.run_ai import run
 from root.db import Database
 from root.entities import Player, Bet, Bank
-from root.tools import get_data
+from root.tools import get_data, handle_for_ai_data
 from root.wtf_forms import PlayerForm, BetForm, BankForm
 
 app = Flask(__name__)
@@ -225,12 +226,13 @@ def casinos():
         return render_template("casinos.html", player_bets=players_list)
 
 
-
 @app.route('/analysis')
 def analysis():
     dict_player_data = get_data()
     handled_data = handle_for_ai_data(dict_player_data)
-    pass
+    ai_results = run(handled_data['usernames'], handled_data['data'])
+    return render_template('analysis.html', ai_results=ai_results)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
