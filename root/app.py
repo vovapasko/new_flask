@@ -9,7 +9,7 @@ import plotly.graph_objs as go
 
 from root.db import Database
 from root.entities import Player, Bet, Bank
-from root.tools import get_data
+from root.tools import get_data, handle_for_ai_data
 from root.wtf_forms import PlayerForm, BetForm, BankForm
 
 app = Flask(__name__)
